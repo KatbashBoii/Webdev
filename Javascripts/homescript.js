@@ -15,8 +15,6 @@
                         block: 'start'
                     });
                 }
-                // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
 
