@@ -9,7 +9,7 @@
     <link href="stylesheets/homeStyles.css" rel="stylesheet">
 </head>
 
-<body class="bg-white h-full">
+<body class="overflow-hidden bg-white h-full">
     <!-- Navigation -->
     <nav class="nav-luxury fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,62 +32,43 @@
     </nav>
 
     <!--user dashboard-->
-    <section class="h-full mt-20 bg-gray-400">
-        <div class="glass-effect rounded-2xl premium-shadow p-8 max-w-5xl mx-auto">
-            <div class="text-3xl font-bold luxury-font luxury-text w-full">Welcome, John</div>
-            <div class="flex flex-col w-1/2 p-5">
-                <button class="luxury-button text-white p-5 text-sm font-medium tracking-wide"></button>
-                <button class="luxury-button text-white p-5 text-sm font-medium tracking-wide"></button>
-                <button class="luxury-button text-white p-5 text-sm font-medium tracking-wide"></button>
-                <button class="luxury-button text-white p-5 text-sm font-medium tracking-wide"></button>
-                <button class="luxury-button text-white p-5 text-sm font-medium tracking-wide"></button>
+    <section class="h-screen overflow-hidden mt-20 bg-gray-400 items-center justify-center" >
+        <div class="glass-effect premium-shadow py-20 max-w-3xl mx-auto h-full">
+            <div class="text-3xl font-bold luxury-font text-center luxury-text w-full mb-3">Welcome, John</div>
+
+            <div class="grid grid-cols-2 gap-6 justify-items-center p-12 ">
+
+                <div class="flex">
+                    <input id="nameField" type="text" value="FirstName" readonly class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 w-64 bg-gray-100">
+                    <button id="editButton" class="luxury-button text-white p-5 text-sm font-medium tracking-wide ">Edit</button>
+                </div>
+
+                <div class="flex">
+                    <input id="nameField" type="text" value="LastName" readonly class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 w-64 bg-gray-100">
+                    <button id="editButton" class="luxury-button text-white p-5 text-sm font-medium tracking-wide ">Edit</button>
+                </div>
+
+                <div class="flex">
+                    <input id="emailField" type="text" value="Email" readonly class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 w-64 bg-gray-100">
+                    <button id="editButton" class="luxury-button text-white p-5 text-sm font-medium tracking-wide ">Edit</button>
+                </div>
+
+                <div class="flex">
+                    <input id="phoneField" type="int" value="55079880" readonly class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 w-64 bg-gray-100">
+                    <button id="editButton" class="luxury-button text-white p-5 text-sm font-medium tracking-wide ">Edit</button>
+                </div>
             </div>
-            
+
+            <div class="items-center justify-center flex flex-col gap-10">
+            <button class="luxury-button text-white p-5 text-sm font-medium tracking-wide w-48">View History</button>
+            <button class="luxury-button text-white p-2 text-sm font-medium tracking-wide w-24">Log out</button>
+            </div>
+
         </div>
     </section>
 
-        <!-- Footer -->
-        <footer class="bg-black text-white py-16 relative h-full">
-            <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-                    <div class="md:col-span-2">
-                        <div class="luxury-font text-3xl font-bold luxury-text mb-6">✦ Prestige Motors</div>
-                        <p class="text-gray-300 font-light text-lg leading-relaxed mb-6">Redefining luxury automotive experiences through uncompromising quality, exceptional service, and an unwavering commitment to excellence.</p>
-                        <div class="flex space-x-6">
-                            <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                            <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                            <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                            <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="luxury-font text-xl font-semibold mb-6 luxury-text">Navigation</h4>
-                        <ul class="space-y-3 text-gray-300">
-                            <li><a href="#home" class="hover:text-yellow-400 transition-colors duration-300 font-light">Home</a></li>
-                            <li><a href="#cars" class="hover:text-yellow-400 transition-colors duration-300 font-light">Collection</a></li>
-                            <li><a href="#services" class="hover:text-yellow-400 transition-colors duration-300 font-light">Services</a></li>
-                            <li><a href="#contact" class="hover:text-yellow-400 transition-colors duration-300 font-light">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="luxury-font text-xl font-semibold mb-6 luxury-text">Exclusive Services</h4>
-                        <ul class="space-y-3 text-gray-300 font-light">
-                            <li>Luxury Vehicle Rentals</li>
-                            <li>Chauffeur Services</li>
-                            <li>Corporate Packages</li>
-                            <li>Event Transportation</li>
-                            <li>Concierge Support</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="section-divider mt-12 mb-8"></div>
-                <div class="text-center text-gray-400 font-light">
-                    <p>&copy; 2024 Prestige Motors. All rights reserved. | <a href="#" class="hover:text-yellow-400 transition-colors duration-300">Privacy Policy</a> | <a href="#" class="hover:text-yellow-400 transition-colors duration-300">Terms of Service</a></p>
-                </div>
-            </div>
-        </footer>
-    
-        <script src="Javascripts/homescript.js"></script>
-    </body>
-    </html>
+       
+    <script src="Javascripts/homescript.js"></script>
+
+</body>
+</html>
