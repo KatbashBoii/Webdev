@@ -40,19 +40,19 @@
                     ✦ Prestige Motors
                 </div>
             </div>
-            <form id="registration-form" class="flex flex-col gap-6">
+            <form id="registration-form"  action="phps/login.php" method="post"class="flex flex-col gap-6">
                 <div class="text-left">
                     <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Email</label>
-                    <input type="email" max="128" class="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
+                    <input type="email" id="email" name="email" max="128" class="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
                 </div>
                 <div class="text-left">
                     <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Password</label>
-                    <input type="password" class="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
+                    <input type="password" id="password" name="password" class="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
                 </div>
                 <div class="flex items-end">
-                    <a href="HomePage.html"> <button type="submit" class="w-full luxury-button text-white p-4 rounded-lg font-semibold tracking-wide uppercase">
+                    <button type="submit" class="w-full luxury-button text-white p-4 rounded-lg font-semibold tracking-wide uppercase">
                         Login Now
-                    </button></a>
+                    </button>
                 </div>
                 <div class="flex items-center">
                     <p class="p-2">Don't have an account?</p><a href="registry.html" class="text-blue-500" >Sign up Now</a>
