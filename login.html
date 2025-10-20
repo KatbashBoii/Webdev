@@ -11,13 +11,18 @@
 
 </head>
 
-<body class="bg-white h-full">
+<body class="hero-gradient bg-black">
     <!-- Navigation -->
-    <nav class="nav-luxury fixed w-full top-0  z-50">
+     <!--making the logo a button leading to homepage-->
+    <nav class="nav-luxury fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <div class="text-3xl font-bold luxury-font luxury-text">✦ Prestige Motors</div>
+                    <a href="brochomepage.html">
+                        <button class="focus:outline-none">
+                            <div class="text-3xl font-bold luxury-font luxury-text">✦ Prestige Motors</div>
+                        </button>
+                    </a>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
@@ -33,8 +38,8 @@
     </nav>
 
     <!--Registration-->
-    <section class="bg-gray-400 flex flex-col h-full w-full items-center mt-12 p-20 ">
-        <div class="glass-effect rounded-2xl premium-shadow h-90 p-12 ">
+    <section class="bg-white-400 flex flex-col h-full w-full items-center mt-12 p-20 ">
+        <div class="h-full glass-effect rounded-2xl premium-shadow p-8 max-w-2xl mx-auto mb-12 border-yellow-400 overflow-hidden ">
             <div class="p-4 text-center">
                 <div class="text-6xl font-bold luxury-font luxury-text px-1 p-12">
                     ✦ Prestige Motors
@@ -42,11 +47,11 @@
             </div>
             <form id="registration-form" class="flex flex-col gap-6">
                 <div class="text-left">
-                    <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Email</label>
+                    <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase hover:text-yellow-400 transition-colors duration-300 ">Email</label>
                     <input type="email" max="128" class="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
                 </div>
                 <div class="text-left">
-                    <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Password</label>
+                    <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase hover:text-yellow-400 transition-colors duration-300 ">Password</label>
                     <input type="password" class="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
                 </div>
                 <div class="flex items-end">
@@ -61,49 +66,6 @@
         </div>
     </section>
     
-
-    <!-- Footer -->
-    <footer class="bg-black text-white py-16 relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-                <div class="md:col-span-2">
-                    <div class="luxury-font text-3xl font-bold luxury-text mb-6">✦ Prestige Motors</div>
-                    <p class="text-gray-300 font-light text-lg leading-relaxed mb-6">Redefining luxury automotive experiences through uncompromising quality, exceptional service, and an unwavering commitment to excellence.</p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 text-2xl transition-colors duration-300">TBD</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="luxury-font text-xl font-semibold mb-6 luxury-text">Navigation</h4>
-                    <ul class="space-y-3 text-gray-300">
-                        <li><a href="#home" class="hover:text-yellow-400 transition-colors duration-300 font-light">Home</a></li>
-                        <li><a href="#cars" class="hover:text-yellow-400 transition-colors duration-300 font-light">Collection</a></li>
-                        <li><a href="#services" class="hover:text-yellow-400 transition-colors duration-300 font-light">Services</a></li>
-                        <li><a href="#contact" class="hover:text-yellow-400 transition-colors duration-300 font-light">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="luxury-font text-xl font-semibold mb-6 luxury-text">Exclusive Services</h4>
-                    <ul class="space-y-3 text-gray-300 font-light">
-                        <li>Luxury Vehicle Rentals</li>
-                        <li>Chauffeur Services</li>
-                        <li>Corporate Packages</li>
-                        <li>Event Transportation</li>
-                        <li>Concierge Support</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="section-divider mt-12 mb-8"></div>
-            <div class="text-center text-gray-400 font-light">
-                <p>&copy; 2024 Prestige Motors. All rights reserved. | <a href="#" class="hover:text-yellow-400 transition-colors duration-300">Privacy Policy</a> | <a href="#" class="hover:text-yellow-400 transition-colors duration-300">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
-
     <script src="Javascripts/homescript.js"></script>
 </body>
 </html>
