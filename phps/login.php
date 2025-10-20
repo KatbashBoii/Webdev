@@ -1,11 +1,13 @@
 <?php include 'databaseconnect.php'; ?>
 
 <?php
+session_start();
 
     ob_start();
 
     $email = $_POST["email"] ?? null;
     $userPassword = $_POST["password"] ?? null;
+    $remme = $_POST["remme"] ?? null;
 
     //validating
 
@@ -26,19 +28,24 @@
     if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
-        if (password_verify($userPassword, $user['Password'])) {
-            echo "<script>window.location.href = '../HomePage.html';</script>";
-            exit;
-        }
-        else {
-            echo "<p class='text-red-500'>Invalid password.</p>";
-            exit;
-        }
+    if(!empty($_POST["remme"])){
+        $remember_token = bin2hex(random_bytes(32));
+        setcookie('remember_me', $remember_token, time() + (86400 * 30), "/");
+    }
 
-    }  else {
-            echo "<p class='text-red-500'>Email not found.</p>";
-            exit;
-            }
+    if (password_verify($userPassword, $user['Password'])) {
+        echo "<script>window.location.href = '../HomePage.html';</script>";
+        exit;
+    }
+    else {
+        echo "<p class='text-red-500'>Invalid password.</p>";
+        exit;
+    }
+
+}  else {
+        echo "<p class='text-red-500'>Email not found.</p>";
+        exit;
+        }
 
         
     ob_end_flush();
