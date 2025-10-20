@@ -1,3 +1,5 @@
+ <?php include 'databaseconnect.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +48,12 @@
             <div class="w-1/2 p-8 flex flex-col justify-center">
                 <h3 class="luxury-font text-2xl font-semibold mb-3">Mercedes S-Class</h3>
                 <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology.<br></p>
-                <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology in the Mercedes S-Class S580. From its elegantly crafted interior to its smooth, powerful performance, every journey becomes an occasion. Equipped with advanced safety features and state-of-the-art infotainment, this flagship sedan ensures a first-class driving experience, whether navigating city streets or cruising on the open road. Perfect for business trips, special events, or simply indulging in a premium ride, the S580 defines excellence in automotive luxury.
+                <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology
+                                                         in the Mercedes S-Class S580. From its elegantly crafted interior to its smooth, powerful performance,
+                                                         every journey becomes an occasion. Equipped with advanced safety features and state-of-the-art infotainment,
+                                                         this flagship sedan ensures a first-class driving experience, whether navigating city streets or cruising on 
+                                                         the open road. Perfect for business trips, special events, or simply indulging in a premium ride, the S580 
+                                                         defines excellence in automotive luxury.
                 </p>
                 <div class="flex justify-between items-center mb-6">
                     <div class="text-3xl font-bold luxury-text">Rs20k<span class="text-lg text-gray-500 font-normal">/day</span></div>

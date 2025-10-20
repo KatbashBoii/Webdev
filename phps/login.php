@@ -1,3 +1,5 @@
+<?php include 'databaseconnect.php'; ?>
+
 <?php
 
     ob_start();
@@ -13,19 +15,6 @@
         die("Please enter both email and password.");
     }
 
-    $host = "localhost";
-    $dbname = "vehicledb";
-    $username = "root";
-    $password = "";
-
-    $connection = mysqli_connect(hostname: $host,
-                                username: $username,
-                                password: $password,
-                                database: $dbname);
-
-    if (mysqli_connect_errno()){
-        die("Connection error: " . mysqli_connect_error());
-    }
 
     $sql = "SELECT * FROM customertable WHERE Email = ?";
     $stmt = $connection->prepare($sql);

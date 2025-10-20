@@ -1,4 +1,8 @@
+<?php include 'databaseconnect.php'; ?>
+
 <?php
+
+    ob_start();
 
     $fName = $_POST["firstName"] ?? null;
     $lName = $_POST["lastName"] ?? null;
@@ -14,20 +18,6 @@
     
     if ($userPassword) {
         $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
-    }
-
-    $host = "localhost";
-    $dbname = "vehicledb";
-    $username = "root";
-    $password = "";
-
-    $connection = mysqli_connect(hostname: $host,
-                                username: $username,
-                                password: $password,
-                                database: $dbname);
-
-    if (mysqli_connect_errno()){
-        die("Connection error: " . mysqli_connect_error());
     }
 
     $sql = "INSERT INTO customertable (Fname, Lname, Phone, Email, Password)
@@ -49,4 +39,6 @@
     mysqli_stmt_execute($stmt);
 
     echo "ayo something happened?";
+
+     ob_end_flush();
 ?>
