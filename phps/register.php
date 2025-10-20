@@ -4,7 +4,7 @@
     $lName = $_POST["lastName"] ?? null;
     $tel = $_POST["phoneNumber"] ?? null;
     $email = $_POST["email"] ?? null;
-    $password = $_POST["password"] ?? null;
+    $userPassword = $_POST["password"] ?? null;
     
     // Validatation and sanitizing data
     $fName = htmlspecialchars(trim($fName));
@@ -12,8 +12,8 @@
     $tel = filter_var($tel, FILTER_SANITIZE_NUMBER_INT);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     
-    if ($password) {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    if ($userPassword) {
+        $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
     }
 
     $host = "localhost";

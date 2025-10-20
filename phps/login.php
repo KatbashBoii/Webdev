@@ -1,13 +1,15 @@
 <?php
 
+    ob_start();
+
     $email = $_POST["email"] ?? null;
-    $password = $_POST["password"] ?? null;
+    $userPassword = $_POST["password"] ?? null;
 
     //validating
 
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
-    if (!$email || !$password) {
+    if (!$email || !$userPassword) {
         die("Please enter both email and password.");
     }
 
@@ -35,17 +37,20 @@
     if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
-        if (password_verify($_POST["password"], $user['password_hash'])) {
-            header("Location: HomePage.html");
+        if (password_verify($userPassword, $user['Password'])) {
+            echo "<script>window.location.href = '../HomePage.html';</script>";
+            exit;
         }
         else {
             echo "<p class='text-red-500'>Invalid password.</p>";
+            exit;
         }
 
-    }   else {
+    }  else {
             echo "<p class='text-red-500'>Email not found.</p>";
+            exit;
             }
 
         
-    
+    ob_end_flush();
 ?>
