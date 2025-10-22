@@ -8,17 +8,18 @@
     <title>Prestige Motors - Luxury Car Rental Experience</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="stylesheets/homeStyles.css" rel="stylesheet">
+    <link href="../stylesheets/homeStyles.css" rel="stylesheet">
 
 
 </head>
+
 <body class="bg-white">
     <!-- Navigation -->
     <nav class="nav-luxury fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <a href="brochomepage.html">
+                    <a href="../brochomepage.html">
                         <button class="focus:outline-none">
                             <div class="text-3xl font-bold luxury-font luxury-text">✦ Prestige Motors</div>
                         </button>
@@ -47,7 +48,7 @@
 
         $result = $stmt->get_result();
         $car = $result->fetch_assoc();
-        
+
         $stmt->close();
         $connection->close();
     ?>
@@ -55,13 +56,13 @@
     <!--Picked CAR-->
         <div class="flex border-yellow-400 mt-20 min-h-[calc(100vh-5rem)]">
             <div class="w-1/2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex flex-col justify-center relative">
-             <img src="assets/.jpg" alt="Mercedes S-Class" class="absolute inset-0 w-full h-full object-cover z-0" />
-             <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">LUXURY SEDAN</div>
+             <img src="../assets/<?= htmlspecialchars($car['Name'])?>.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
+             <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide"><?= htmlspecialchars($car['Type']) ?></div>
             </div>
 
             <div class="w-1/2 p-8 flex flex-col justify-center">
                 <h3 class="luxury-font text-2xl font-semibold mb-3"><?= htmlspecialchars($car['Name']) ?></h3>
-                <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology.<br></p>
+                <p class="text-gray-600 mb-6 font-light"><br><?= htmlspecialchars($car['Description']) ?></p>
                 <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology
                                                          in the Mercedes S-Class S580. From its elegantly crafted interior to its smooth, powerful performance,
                                                          every journey becomes an occasion. Equipped with advanced safety features and state-of-the-art infotainment,
@@ -70,17 +71,15 @@
                                                          defines excellence in automotive luxury.
                 </p>
                 <div class="flex justify-between items-center mb-6">
-                    <div class="text-3xl font-bold luxury-text">Rs20k<span class="text-lg text-gray-500 font-normal">/day</span></div>
+                    <div class="text-3xl font-bold text-amber-400">Rs<?= htmlspecialchars($car['RentPerDay']) ?><span class="text-lg text-gray-500 font-normal">/day</span></div>
                     <div class="flex items-center text-sm text-gray-500 space-x-4">
-                        <span class="flex items-center">Seats 5</span>
-                        <span class="flex items-center">CAt: Premium</span>
+                        <span class="flex items-center">Cat: <?= htmlspecialchars($car['Type']) ?></span>
                     </div>
 
                 </div>
                 <div class="glass-effect rounded-2xl premium-shadow p-8 max-w-5xl mx-auto overflow-hidden  border-yellow-400">
                     <div class="text-center mb-6">
-                        <h3 class="luxury-font text-2xl font-semibold text-gray-800 mb-2">Reserve Your Experience</h3>
-                        <div class="h-12"></div>
+                        <h3 class="luxury-font text-2xl font-semibold text-gray-800 mb-12">Reserve Your Experience</h3>
                     </div>
 
                     <!--Booking form-->

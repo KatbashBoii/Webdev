@@ -19,7 +19,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <a href="brochomepage.html">
+                    <a href="../brochomepage.html">
                         <button class="focus:outline-none">
                             <div class="text-3xl font-bold luxury-font luxury-text">✦ Prestige Motors</div>
                         </button>
@@ -92,7 +92,7 @@
                         <div class="flex justify-between items-center mb-6 mt-auto">
                             <div class="text-3xl font-bold text-amber-400 ">RS '. htmlspecialchars($row["RentPerDay"]) .'<span class="text-lg text-gray-500 font-normal">/day</span></div>
                         </div>
-                        <a href="car.php?id='.urlencode($row["ID"]).'">
+                        <a href="car.php?' . http_build_query(['id' => $row['ID']]) . '">
                         <button class="w-full luxury-button text-white py-3 rounded-lg font-semibold tracking-wide uppercase">
                             Reserve Now
                         </button>

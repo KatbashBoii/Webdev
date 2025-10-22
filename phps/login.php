@@ -3,8 +3,6 @@
 <?php
 session_start();
 
-    ob_start();
-
     $email = $_POST["email"] ?? null;
     $userPassword = $_POST["password"] ?? null;
     $remme = $_POST["remme"] ?? null;
@@ -34,7 +32,7 @@ session_start();
     }
 
     if (password_verify($userPassword, $user['Password'])) {
-        echo "<script>window.location.href = '../HomePage.html';</script>";
+        echo "<script>window.location.href = '../brochomepage.html';</script>";
         exit;
     }
     else {
@@ -47,6 +45,4 @@ session_start();
         exit;
         }
 
-        
-    ob_end_flush();
 ?>

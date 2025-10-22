@@ -1,8 +1,7 @@
 <?php include 'databaseconnect.php'; ?>
 
 <?php
-
-    ob_start();
+session_start();
 
     $fName = $_POST["firstName"] ?? null;
     $lName = $_POST["lastName"] ?? null;
@@ -38,7 +37,5 @@
 
     mysqli_stmt_execute($stmt);
 
-    echo "ayo something happened?";
-
-     ob_end_flush();
+    echo "<script>window.location.href = '../login.html';</script>";
 ?>
