@@ -8,7 +8,7 @@
     <title>Prestige Motors - Luxury Car Rental Experience</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="../stylesheets/homeStyles.css" rel="stylesheet">
+    <link href="stylesheets/homeStyles.css" rel="stylesheet">
 
 
 </head>
@@ -25,15 +25,15 @@
                         </button>
                     </a>
                 </div>
-
-               
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="brochomepage.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
-                        <a href="vehiclelist.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
-                        <a href="#services" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">SERVICES</a>
-                        <a href="#contact" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">CONTACT</a>
-                        <a href="../registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a>
+                        <a href="homepage.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
+                        <a href="carlist.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
+                        <?php if ($user): ?>
+                            <div><a href="user.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
+                            <?php else: ?>
+                            <div><a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 while ($row = $result->fetch_assoc()){
                     echo '<div class="car-card rounded-2xl overflow-hidden border-yellow-400 flex flex-col">
                     <div class="h-64 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex items-center justify-center relative">
-                     <img src="../assets/'. htmlspecialchars($row["Name"]).'.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
+                     <img src="assets/ID'. htmlspecialchars($row["ID"]).'.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
                         <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">'. htmlspecialchars($row["Type"]) .'</div>
                     </div>
                     <div class="p-8 flex flex-col flex-1">

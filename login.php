@@ -40,7 +40,7 @@ session_start();
     }
 
     if (password_verify($userPassword, $user['Password'])) {
-        echo "<script>window.location.href = '../brochomepage.html';</script>";
+        echo "<script>window.location.href = 'homepage.php';</script>";
         exit;
     }
 

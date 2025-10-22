@@ -52,18 +52,13 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="brochomepage.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
-                        <a href="vehiclelist.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
-                        <a href="#services" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">SERVICES</a>
-                        <a href="#contact" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">CONTACT</a>
-
+                        <a href="homepage.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
+                        <a href="carlist.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
                         <?php if ($user): ?>
-                            <div><a href="../user.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
-
+                            <div><a href="user.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
                             <?php else: ?>
-                            <div><a href="../registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
+                            <div><a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
                         <?php endif; ?>
-
                     </div>
                 </div>
             </div>
@@ -73,19 +68,14 @@
     <!--Picked CAR-->
         <div class="flex border-yellow-400 mt-20 min-h-[calc(100vh-5rem)]">
             <div class="w-1/2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex flex-col justify-center relative">
-             <img src="../assets/<?= htmlspecialchars($car['Name'])?>.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
+             <img src="assets/ID<?= htmlspecialchars($car['ID'])?>.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
              <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide"><?= htmlspecialchars($car['Type']) ?></div>
             </div>
 
             <div class="w-1/2 p-8 flex flex-col justify-center">
                 <h3 class="luxury-font text-2xl font-semibold mb-3"><?= htmlspecialchars($car['Name']) ?></h3>
                 <p class="text-gray-600 mb-6 font-light"><br><?= htmlspecialchars($car['Description']) ?></p>
-                <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology
-                                                         in the Mercedes S-Class S580. From its elegantly crafted interior to its smooth, powerful performance,
-                                                         every journey becomes an occasion. Equipped with advanced safety features and state-of-the-art infotainment,
-                                                         this flagship sedan ensures a first-class driving experience, whether navigating city streets or cruising on 
-                                                         the open road. Perfect for business trips, special events, or simply indulging in a premium ride, the S580 
-                                                         defines excellence in automotive luxury.</p>
+                <p class="text-gray-600 mb-6 font-light"><?= htmlspecialchars($car['LongDescription'])?></p>
 
                 <div class="flex justify-between items-center mb-6">
                     <div class="text-3xl font-bold text-amber-400">Rs<?= htmlspecialchars($car['RentPerDay']) ?><span class="text-lg text-gray-500 font-normal">/day</span></div>

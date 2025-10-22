@@ -11,12 +11,11 @@
 
 <body class="hero-gradient bg-black">
     <!-- Navigation -->
-     <!--making the logo a button leading to homepage-->
     <nav class="nav-luxury fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <a href="brochomepage.html">
+                    <a href="../brochomepage.html">
                         <button class="focus:outline-none">
                             <div class="text-3xl font-bold luxury-font luxury-text">✦ Prestige Motors</div>
                         </button>
@@ -24,11 +23,13 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="brochomepage.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
-                        <a href="vehiclelist.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
-                        <a href="#services" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">SERVICES</a>
-                        <a href="#contact" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">CONTACT</a>
-                        <a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HELLO, NAME</button></a>
+                        <a href="homepage.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
+                        <a href="carlist.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
+                        <?php if ($user): ?>
+                            <div><a href="user.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
+                            <?php else: ?>
+                            <div><a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

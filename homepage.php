@@ -1,8 +1,30 @@
-<?php include 'databaseconnect.php'; ?>
+<?php include 'databaseconnect.php'; 
 
+    $query1 = "SELECT * FROM cartable WHERE ID = 8";
+    $result1 = $connection->query($query1);
+    $car1 = $result1->fetch_assoc();
 
+    $query2 = "SELECT * FROM cartable WHERE ID = 2";
+    $result2 = $connection->query($query2);
+    $car2 = $result2->fetch_assoc();
 
+    $query3 = "SELECT * FROM cartable WHERE ID = 3";
+    $result3 = $connection->query($query3);
+    $car3 = $result3->fetch_assoc();
 
+    $usertoken = $_COOKIE['auth_token'];
+
+    $user = NUll;
+
+    if($usertoken){
+        $decoded = base64_decode($usertoken, true);
+        if($decoded !== false){
+            $payload = json_decode($decoded, true);
+            $user = ['fname' => htmlspecialchars($payload['fname']),
+                     'lname' => htmlspecialchars($payload['lname'])];
+        }
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +35,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="stylesheets/homeStyles.css" rel="stylesheet">
-
-
 </head>
 
 <body class="bg-white">
@@ -23,7 +43,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <a href="brochomepage.html">
+                    <a href="../brochomepage.html">
                         <button class="focus:outline-none">
                             <div class="text-3xl font-bold luxury-font luxury-text">✦ Prestige Motors</div>
                         </button>
@@ -31,11 +51,13 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="brochomepage.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
-                        <a href="phps/carlist.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
-                        <a href="#services" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">SERVICES</a>
-                        <a href="#contact" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">CONTACT</a>
-                        <a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a>
+                        <a href="homepage.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
+                        <a href="carlist.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
+                        <?php if ($user): ?>
+                            <div><a href="user.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
+                            <?php else: ?>
+                            <div><a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -69,17 +91,14 @@
                 <div class="car-card rounded-2xl overflow-hidden border-yellow-400">
                     <div class="h-64 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex items-center justify-center relative overflow-hidden">
                         <!--insert pic-->
-                            <img src="assets/MB S580.jpg" alt="Mercedes S-Class" class="absolute inset-0 w-full h-full object-cover z-0" />
-                            <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide z-10">LUXURY SEDAN</div>
+                            <img src="assets/ID<?php echo $car1['ID']; ?>.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
+                            <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide z-10"><?php echo $car1['Type']; ?></div>
                         </div>
                     <div class="p-8">
-                        <h3 class="luxury-font text-2xl font-semibold mb-3">Mercedes S-Class</h3>
-                        <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology.</p>
+                        <h3 class="luxury-font text-2xl font-semibold mb-3"><?php echo $car1['Name']; ?></h3>
+                        <p class="text-gray-600 mb-6 font-light"><?php echo $car1['Description']; ?></p>
                         <div class="flex justify-between items-center mb-6">
-                            <div class="text-3xl font-bold luxury-text">Rs20k<span class="text-lg text-gray-500 font-normal">/day</span></div>
-                            <div class="flex items-center text-sm text-gray-500 space-x-4">
-                                <span class="flex items-center">Cat:Premium</span>
-                            </div>
+                            <div class="text-3xl font-bold luxury-text">Rs<?php echo $car1['RentPerDay']; ?><span class="text-lg text-gray-500 font-normal">/day</span></div>
                         </div>
                         <a href="vehicle.html">
                         <button class="w-full luxury-button text-white py-3 rounded-lg font-semibold tracking-wide uppercase">
@@ -92,20 +111,17 @@
                 <!-- Car 2 -->
                 <div class="car-card rounded-2xl overflow-hidden border-yellow-400">
                     <div class="h-64 bg-gradient-to-br from-red-900 via-red-800 to-black flex items-center justify-center relative overflow-hidden">
-                        <img src="assets/911 turbo s.jpg" alt="Porsche 911 turbo" class="absolute inset-0 w-full h-full object-cover z-0" />
-                        <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">SPORTS CAR</div>
+                        <img src="assets/ID<?php echo $car2['ID']; ?>.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
+                        <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide"><?php echo $car2['Type']; ?></div>
                         <svg class="w-40 h-24 text-yellow-400/80" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
                         </svg>
                     </div>
                     <div class="p-8">
-                        <h3 class="luxury-font text-2xl font-semibold mb-3">Porsche 911 Turbo</h3>
-                        <p class="text-gray-600 mb-6 font-light">Pure driving exhilaration. Feel the rush of precision engineering and legendary performance.</p>
+                        <h3 class="luxury-font text-2xl font-semibold mb-3"><?php echo $car2['Name']; ?></h3>
+                        <p class="text-gray-600 mb-6 font-light"><?php echo $car2['Description']; ?></p>
                         <div class="flex justify-between items-center mb-6">
-                            <div class="text-3xl font-bold luxury-text">Rs40k<span class="text-lg text-gray-500 font-normal">/day</span></div>
-                            <div class="flex items-center text-sm text-gray-500 space-x-4">
-                                <span class="flex items-center">Cat:Sport</span>
-                            </div>
+                            <div class="text-3xl font-bold luxury-text">Rs<?php echo $car2['RentPerDay']; ?><span class="text-lg text-gray-500 font-normal">/day</span></div>
                         </div>
                         <a href="vehicle.html">
                         <button class="w-full luxury-button text-white py-3 rounded-lg font-semibold tracking-wide uppercase">
@@ -118,20 +134,17 @@
                 <!-- Car 3 -->
                 <div class="car-card rounded-2xl overflow-hidden border-yellow-400">
                     <div class="h-64 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 flex items-center justify-center relative overflow-hidden">
-                        <img src="assets/autobiography P530.jpg" alt="Range Rover Autobiography P530 2023" class="absolute inset-0 w-full h-full object-cover z-0" />
-                        <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">LUXURY SUV</div>
+                        <img src="assets/ID<?php echo $car3['ID']; ?>.jpg"  class="absolute inset-0 w-full h-full object-cover z-0" />
+                        <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide"><?php echo $car3['Type']; ?></div>
                         <svg class="w-40 h-24 text-yellow-400/80" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
                         </svg>
                     </div>
                     <div class="p-8">
-                        <h3 class="luxury-font text-2xl font-semibold mb-3">Range Rover Autobiography</h3>
-                        <p class="text-gray-600 mb-6 font-light">Command the road with unmatched presence. Luxury, capability, and refinement in perfect harmony.</p>
+                        <h3 class="luxury-font text-2xl font-semibold mb-3"><?php echo $car3['Name']; ?></h3>
+                        <p class="text-gray-600 mb-6 font-light"><?php echo $car3['Description']; ?></p>
                         <div class="flex justify-between items-center mb-6">
-                            <div class="text-3xl font-bold luxury-text">Rs60k<span class="text-lg text-gray-500 font-normal">/day</span></div>
-                            <div class="flex items-center text-sm text-gray-500 space-x-4">
-                                <span class="flex items-center">Cat:All-Terrain</span>
-                            </div>
+                            <div class="text-3xl font-bold luxury-text">Rs<?php echo $car3['RentPerDay']; ?><span class="text-lg text-gray-500 font-normal">/day</span></div>
                         </div>
                         <a href="vehicle.html">
                         <button class="w-full luxury-button text-white py-3 rounded-lg font-semibold tracking-wide uppercase">
