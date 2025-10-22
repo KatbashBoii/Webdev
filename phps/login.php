@@ -23,18 +23,29 @@ session_start();
 
     $result = $stmt->get_result();
 
+    $secret =  'definitelysecret';
+
     if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
+    $data_token = json_encode([
+                    'fname' => $user['Fname'],
+                    'lname' => $user['Lname'],
+                    'status' =>true,
+                    'timestamp' => time(),
+                        ]);
+
+
     if(!empty($_POST["remme"])){
-        $remember_token = bin2hex(random_bytes(32));
-        setcookie('remember_me', $remember_token, time() + (86400 * 30), "/");
+        $token = base64_encode($data_token);
+        setcookie('auth_token', $token, time() + (86400 * 30), "/");
     }
 
     if (password_verify($userPassword, $user['Password'])) {
         echo "<script>window.location.href = '../brochomepage.html';</script>";
         exit;
     }
+
     else {
         echo "<p class='text-red-500'>Invalid password.</p>";
         exit;

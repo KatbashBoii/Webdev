@@ -1,4 +1,32 @@
- <?php include 'databaseconnect.php';?>
+    <!--linking to specific row-->
+<?php   
+    include 'databaseconnect.php';
+    $ID = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+    $stmt = $connection->prepare("SELECT * FROM cartable WHERE ID = ? ");
+    $stmt->bind_param("i", $ID);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $car = $result->fetch_assoc();
+
+    $stmt->close();
+    $connection->close();
+
+    $usertoken = $_COOKIE['auth_token'];
+
+    $user = NUll;
+
+    if($usertoken){
+        $decoded = base64_decode($usertoken, true);
+        if($decoded !== false){
+            $payload = json_decode($decoded, true);
+            $user = ['fname' => htmlspecialchars($payload['fname']),
+                     'lname' => htmlspecialchars($payload['lname'])];
+        }
+    }
+
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,8 +37,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="../stylesheets/homeStyles.css" rel="stylesheet">
-
-
 </head>
 
 <body class="bg-white">
@@ -31,27 +57,19 @@
                         <a href="vehiclelist.html" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
                         <a href="#services" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">SERVICES</a>
                         <a href="#contact" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">CONTACT</a>
-                        <a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a>
+
+                        <?php if ($user): ?>
+                            <div><a href="../user.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
+
+                            <?php else: ?>
+                            <div><a href="../registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-
-    <!--linking to specific row-->
-    <?php
-        $ID = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-        $stmt = $connection->prepare("SELECT * FROM cartable WHERE ID = ? ");
-        $stmt->bind_param("i", $ID);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $car = $result->fetch_assoc();
-
-        $stmt->close();
-        $connection->close();
-    ?>
 
     <!--Picked CAR-->
         <div class="flex border-yellow-400 mt-20 min-h-[calc(100vh-5rem)]">
@@ -68,8 +86,8 @@
                                                          every journey becomes an occasion. Equipped with advanced safety features and state-of-the-art infotainment,
                                                          this flagship sedan ensures a first-class driving experience, whether navigating city streets or cruising on 
                                                          the open road. Perfect for business trips, special events, or simply indulging in a premium ride, the S580 
-                                                         defines excellence in automotive luxury.
-                </p>
+                                                         defines excellence in automotive luxury.</p>
+
                 <div class="flex justify-between items-center mb-6">
                     <div class="text-3xl font-bold text-amber-400">Rs<?= htmlspecialchars($car['RentPerDay']) ?><span class="text-lg text-gray-500 font-normal">/day</span></div>
                     <div class="flex items-center text-sm text-gray-500 space-x-4">
