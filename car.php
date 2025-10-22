@@ -25,7 +25,6 @@
                      'lname' => htmlspecialchars($payload['lname'])];
         }
     }
-
 ?>
 
 <!DOCTYPE html>
