@@ -88,11 +88,11 @@
                     </div>
                     <div class="p-8 flex flex-col flex-1">
                         <h3 class="luxury-font text-2xl font-semibold mb-3">'. htmlspecialchars($row["Name"]) .'</h3>
-                        <p '. htmlspecialchars($row["Description"]) .'</p>
+                        <p>'. htmlspecialchars($row["Description"]) .'</p>
                         <div class="flex justify-between items-center mb-6 mt-auto">
                             <div class="text-3xl font-bold text-amber-400 ">RS '. htmlspecialchars($row["RentPerDay"]) .'<span class="text-lg text-gray-500 font-normal">/day</span></div>
                         </div>
-                        <a href="vehicle.php">
+                        <a href="car.php?id='.urlencode($row["ID"]).'">
                         <button class="w-full luxury-button text-white py-3 rounded-lg font-semibold tracking-wide uppercase">
                             Reserve Now
                         </button>

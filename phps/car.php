@@ -1,4 +1,4 @@
- <?php include 'databaseconnect.php'; ?>
+ <?php include 'databaseconnect.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,16 +37,30 @@
         </div>
     </nav>
 
+    <!--linking to specific row-->
+    <?php
+        $ID = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+        $stmt = $connection->prepare("SELECT * FROM cartable WHERE ID = ? ");
+        $stmt->bind_param("i", $ID);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $car = $result->fetch_assoc();
+        
+        $stmt->close();
+        $connection->close();
+    ?>
 
     <!--Picked CAR-->
         <div class="flex border-yellow-400 mt-20 min-h-[calc(100vh-5rem)]">
             <div class="w-1/2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex flex-col justify-center relative">
-             <img src="assets/MB S580.jpg" alt="Mercedes S-Class" class="absolute inset-0 w-full h-full object-cover z-0" />
-
-                <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">LUXURY SEDAN</div>
+             <img src="assets/.jpg" alt="Mercedes S-Class" class="absolute inset-0 w-full h-full object-cover z-0" />
+             <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">LUXURY SEDAN</div>
             </div>
+
             <div class="w-1/2 p-8 flex flex-col justify-center">
-                <h3 class="luxury-font text-2xl font-semibold mb-3">Mercedes S-Class</h3>
+                <h3 class="luxury-font text-2xl font-semibold mb-3"><?= htmlspecialchars($car['Name']) ?></h3>
                 <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology.<br></p>
                 <p class="text-gray-600 mb-6 font-light">The epitome of luxury and sophistication. Experience unparalleled comfort and cutting-edge technology
                                                          in the Mercedes S-Class S580. From its elegantly crafted interior to its smooth, powerful performance,
