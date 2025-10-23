@@ -12,37 +12,6 @@
         });
     });
 
-    // Registration/login
-    
-
-
-    // Booking form submission
-    document.getElementById('booking-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Create success message
-        const successDiv = document.createElement('div');
-        successDiv.className = 'mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md';
-        successDiv.innerHTML = '✅ Search completed! Available cars are displayed below.';
-        
-        // Remove any existing success message
-        const existingMessage = this.parentNode.querySelector('.mt-4');
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-        
-        // Add success message
-        this.parentNode.appendChild(successDiv);
-        
-        // Scroll to cars section
-        setTimeout(() => {
-            document.getElementById('cars').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }, 1000);
-    });
-
     // Contact form submission
     document.getElementById('contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -61,31 +30,6 @@
         // Add success message and reset form
         this.parentNode.appendChild(successDiv);
         this.reset();
-    });
-
-    // Car booking buttons
-    document.querySelectorAll('.car-card button').forEach(button => {
-        button.addEventListener('click', function() {
-            const carName = this.closest('.car-card').querySelector('h3').textContent;
-            
-            // Create booking confirmation
-            const confirmDiv = document.createElement('div');
-            confirmDiv.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-            confirmDiv.innerHTML = '🎉 ${carName} added to your booking! Complete your reservation above.';
-            
-            document.body.appendChild(confirmDiv);
-            
-            // Remove confirmation after 3 seconds
-            setTimeout(() => {
-                confirmDiv.remove();
-            }, 3000);
-            
-            // Scroll to booking form
-            document.getElementById('home').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
     });
 
     // Set default dates (today and tomorrow)

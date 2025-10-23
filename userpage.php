@@ -76,7 +76,7 @@
     <div class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-4 max-w-2xl mt-12">
     <!-- First Name -->
     <input id="firstNameField" type="text" value="<?php echo $customer['Fname'] ?>" readonly 
-           class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400
+           class="border border-gray-300 rounded-lg px-4 py-2 text-black
               focus:outline-none focus:ring-2 focus:ring-yellow-500 
               bg-gray-100 w-full placeholder:text-gray-400">
     <button id="editFirstName" 
@@ -86,7 +86,7 @@
 
     <!-- Last Name -->
     <input id="lastNameField" type="text" value="<?php echo $customer['Lname'] ?>" readonly 
-           class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400 
+           class="border border-gray-300 rounded-lg px-4 py-2 text-black 
                   focus:outline-none focus:ring-2 focus:ring-yellow-500 
                   bg-gray-100 w-full">
     <button id="editLastName" 
@@ -96,7 +96,7 @@
 
     <!-- Email -->
     <input id="emailField" type="text" value="<?php echo $customer['Email'] ?>" readonly 
-           class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400 
+           class="border border-gray-300 rounded-lg px-4 py-2 text-black 
                   focus:outline-none focus:ring-2 focus:ring-yellow-500 
                   bg-gray-100 w-full">
     <button id="editEmail" 
@@ -106,7 +106,7 @@
 
     <!-- Phone -->
     <input id="phoneField" type="text" value="<?php echo $customer['Phone'] ?>" readonly 
-           class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400 
+           class="border border-gray-300 rounded-lg px-4 py-2 text-black
                   focus:outline-none focus:ring-2 focus:ring-yellow-500 
                   bg-gray-100 w-full">
     <button id="editPhone" 

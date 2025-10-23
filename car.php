@@ -1,19 +1,9 @@
-    <!--linking to specific row-->
 <?php   
     include 'databaseconnect.php';
-    $ID = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    session_start();
 
-    $stmt = $connection->prepare("SELECT * FROM cartable WHERE ID = ? ");
-    $stmt->bind_param("i", $ID);
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-    $car = $result->fetch_assoc();
-
-    $stmt->close();
-    $connection->close();
-
-    $usertoken = $_COOKIE['auth_token'];
+    //stay loggedin
+    $usertoken = $_COOKIE['auth_token'] ?? null;
 
     $user = NUll;
 
@@ -27,6 +17,21 @@
                     ];
         }
     }
+
+    //check cartable
+    $ID = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+    $stmt = $connection->prepare("SELECT * FROM cartable WHERE ID = ? ");
+    $stmt->bind_param("i", $ID);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $car = $result->fetch_assoc();
+
+    $stmt->close();
+    $connection->close();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +73,7 @@
     </nav>
 
     <!--Picked CAR-->
-        <div class="flex border-yellow-400 mt-20 min-h-[calc(100vh-5rem)]">
+        <div class="flex border-yellow-400 mt-20 mb-20 min-h-[calc(100vh-5rem)]">
             <div class="w-1/2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex flex-col justify-center relative">
              <img src="assets/ID<?= htmlspecialchars($car['ID'])?>.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
              <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide"><?= htmlspecialchars($car['Type']) ?></div>
@@ -92,34 +97,35 @@
                     </div>
 
                     <!--Booking form-->
-                    <form id="booking-form" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <form id="booking" method="post" action="savingbooking.php?id=<?= htmlspecialchars($car['ID'])?>" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
                         <div class="text-left">
-                        <label class="block text-sm text-center font-semibold text-gray-800 mb-3 tracking-wide uppercase">Pick Up</label>
-                        <select
+                        <label class="block text-sm text-center font-semibold text-gray-800 mb-3 tracking-wide uppercase">Payment Method</label>
+                        <select name="paymentmethod" id="payment"
                         class="w-full h-[58px] border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold px-4">
-                        <option>Grand Baie</option>
-                        <option>Moka</option>
-                        <option>Tamarin</option>
-                        <option>Floreal</option>
+                        <option>E-banking</option>
+                        <option>Cash-on-arrival</option>
                         </select>
                         </div>
 
                         <div class="text-left">
                         <label class="block text-sm font-semibold text-center text-gray-800 mb-3 tracking-wide uppercase">Departure Date</label>
-                        <input type="date"
-                         class="w-full h-[58px] border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold px-4">
-                        </div>
+                         <?php echo'
+                            <input type="date" name="departuredate" id="departure" min=
+                            class="w-full h-[58px] border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold px-4">
+                            </div>';
+                         ?>
 
                         <div class="text-left">
                             <label class="block text-sm font-semibold text-center text-gray-800 mb-3 tracking-wide uppercase">Return Date</label>
-                            <input type="date"
+                            <input type="date" name="returndate" id="return"
                             class="w-full h-[58px] border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold px-4">
                         </div>
 
                         <div class="flex flex-col justify-end">
-                            <button type="submit"
-                            class="w-full h-[58px] luxury-button text-white rounded-lg font-semibold tracking-wide uppercase">
-                            Reserve Now
+                            <button type="submit" id="button"
+                            class="w-full h-[58px] luxury-button text-white rounded-lg font-semibold tracking-wide uppercase p-2">
+                            Reserve For 0 Days
                             </button>
                         </div>
                         </form>
@@ -184,6 +190,42 @@
         </div>
 
     </footer>
+
+    <!--Script for making buttons interact properly-->
+    <script>
+        const departureInput = document.getElementById('departure');
+        const returnInput = document.getElementById('return');
+        const reservButton = document.getElementById('button');
+
+        function updatedays(){
+            const departure = new Date(departureInput.value);
+            const returning = new Date(returnInput.value);
+
+            if (isNaN(departure) || isNaN(returning)) {
+                reservButton.textContent = "Reserve";
+                return;
+            }
+
+            if (returning < departure){
+                alert("Returns cannot happen before departure");
+                returnInput.value = "";
+                reservButton.textContent = "Reserve";
+                return;
+            }
+
+            const timeDifference = returning.getTime() - departure.getTime()
+            const days = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+            reservButton.textContent = days > 0
+                ? `Reserve For ${days} Day` 
+                : "Reserve";
+        }
+
+        departureInput.addEventListener('change', updatedays);
+        returnInput.addEventListener('change', updatedays);
+
+
+    </script>
     <script src="Javascripts/homescript.js"></script>
 </body>
 </html>

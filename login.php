@@ -41,17 +41,25 @@ session_start();
     }
 
     if (password_verify($userPassword, $user['Password'])) {
-        echo "<script>window.location.href = 'homepage.php';</script>";
+        echo "<script>
+                confirm('Welcome');
+                window.location.href = 'homepage.php';</script>";
         exit;
     }
 
     else {
-        echo "<p class='text-red-500'>Invalid password.</p>";
+        echo "<script>
+                confirm('Wrong password');
+                window.location.href = 'loginpage.php';
+              </script>";
         exit;
     }
 
 }  else {
-        echo "<p class='text-red-500'>Email not found.</p>";
+        echo "<script>
+                confirm('Wrong email');
+                window.location.href = 'loginpage.php';
+              </script>";
         exit;
         }
 
