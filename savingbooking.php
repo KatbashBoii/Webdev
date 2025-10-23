@@ -43,6 +43,9 @@
     //calculating days
     $days = (strtotime($return) - strtotime($departure)) / (60 * 60 * 24);
 
+    //calculating total
+    $totalcost= $days * $car["RentPerDay"];
+
     if (!$user) {
         echo("<script>
                 alert('Please login first! Redirecting...');
@@ -51,11 +54,18 @@
         exit;
     }
 
-    $sql = "INSERT INTO payment (CarID, CustomerID, TypeOfPayment, DepartureDate, ReturnDate, Days)
+    $sqlpay = "INSERT INTO payment (CarID, CustomerID, TypeOfPayment, DepartureDate, ReturnDate, Days)
             VALUES (?, ?, ?, ?, ?, ?)";
 
-    $stmt = $connection->prepare($sql);
+    $stmt = $connection->prepare($sqlpay);
     $stmt->bind_param("iisssi",$carId, $customerId, $paymentmethod, $departure, $return, $days);
+
+    $sqlrent = "INSERT INTO rentedtable (CarID, CustomerID, RentPerDay, DaysRented, Total)
+                VALUES (?, ?, ?, ?, ?)";
+
+    $stmtrent = $connection->prepare($sqlrent);
+    $stmtrent->bind_param("iiiii",$carId, $customerId, $car["RentPerDay"], $days, $totalcost);
+
 
     if ($stmt->execute()){
         echo "<script> 
@@ -64,8 +74,11 @@
               </script>";
     }
 
+    $stmtrent->execute();
+
     $stmt->close();
     $stmtcar->close();
+    $stmtrent->close();
     $connection->close();
     
 

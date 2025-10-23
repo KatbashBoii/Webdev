@@ -190,14 +190,22 @@
     </footer>
 
     <!--Script for making buttons interact properly-->
+
     <script>
+        //validating time
         const departureInput = document.getElementById('departure');
         const returnInput = document.getElementById('return');
         const reservButton = document.getElementById('button');
 
+    
+
         function updatedays(){
             const departure = new Date(departureInput.value);
             const returning = new Date(returnInput.value);
+
+            if (departureInput.value){
+                returnInput.min = departureInput.value;
+            }
 
             if (isNaN(departure) || isNaN(returning)) {
                 reservButton.textContent = "Reserve";
@@ -219,7 +227,17 @@
                 : "Reserve";
         }
 
-        departureInput.addEventListener('change', updatedays);
+        departureInput.addEventListener('change', function(){
+            if (this.value){
+                returnInput.min = this.value;
+
+                //handles invalid if the date changes
+                if (returnInput.value && returnInput.value < this.value){
+                    returnInput.value = "";
+                }
+            }
+            updatedays(); //calls it again to update it
+        });
         returnInput.addEventListener('change', updatedays);
 
 

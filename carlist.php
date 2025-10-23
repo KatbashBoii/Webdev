@@ -29,7 +29,7 @@
 
 </head>
 
-<body class="bg-gray-400">
+<body class="hero-gradient bg-black">
     <!-- Navigation -->
     <nav class="nav-luxury fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,50 +55,17 @@
             </div>
         </div>
     </nav>
-
-
-<!--Search Bar-->
-<div class="bg-white-300 object-top-left p-4 mt-24">
-
-        <form id="SearchBar" class="grid grid-cols-1 md:grid-cols-4 gap-4">
-
-            <div class="text-left">
-                <input type="text" placeholder="Vehicle" class="w-full h-14 p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
-            </div>
-
-            <div class="text-left">
-                <input type="number" placeholder="Number of Seats"  min="2" max="7" class="w-full h-14 p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
-            </div>
-
-            <div class="text-left">
-                <select class="w-full h-14 p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold ">
-                    <option class="text-gray-600 mb-6 font-light">Any</option>
-                    <option class="text-gray-600 mb-6 font-light">Sports Car</option>
-                    <option class="text-gray-600 mb-6 font-light">SUV</option>
-                    <option class="text-gray-600 mb-6 font-light">Premium</option>
-                    <option class="text-gray-600 mb-6 font-light">hatchback</option>
-                </select>
-            </div>
-
-            <div class="flex items-end">
-                <button type="submit" class="w-full luxury-button text-white h-14 p-4 rounded-lg font-semibold tracking-wide uppercase">
-                    Discover Vehicles
-                </button>
-            </div>
-
-        </form>
-    </div>
     
-    <section id="cars" class="bg-white-300 p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-50 px-2">
-    <!--INSERTING IN TO DATA BASE-->
+    <section id="cars" class="bg-white-300 p-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-24 px-2">
+    <!--INSERTING IN from DATABASE-->
             <?php
               $sql = "SELECT * FROM cartable";
               $result = $connection->query($sql);
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()){
                     echo '<div class="car-card rounded-2xl overflow-hidden border-yellow-400 flex flex-col">
-                    <div class="h-64 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex items-center justify-center relative">
+                    <div class="h-80 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex items-center justify-center relative">
                      <img src="assets/ID'. htmlspecialchars($row["ID"]).'.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
                         <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">'. htmlspecialchars($row["Type"]) .'</div>
                     </div>
