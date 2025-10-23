@@ -9,7 +9,9 @@
         if($decoded !== false){
             $payload = json_decode($decoded, true);
             $user = ['fname' => htmlspecialchars($payload['fname']),
-                     'lname' => htmlspecialchars($payload['lname'])];
+                     'lname' => htmlspecialchars($payload['lname']),
+                     'id' => htmlspecialchars($payload['id'])
+                    ];
         }
     }
 ?>
@@ -27,7 +29,7 @@
 
 </head>
 
-<body class="hero-gradient bg-black">
+<body class="bg-gradient-to-br from-[#1a1a1a] to-[#1a1a1a] h-full">
     <!-- Navigation -->
     <nav class="nav-luxury fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,14 +57,14 @@
     </nav>
 
     <!--Registration-->
-    <section class="bg-white-400 mt-20 h-full p-12 ">
-        <div class="h-full glass-effect rounded-2xl premium-shadow p-8 max-w-2xl mx-auto mb-12 border-yellow-400 overflow-hidden">
+    <section class="mt-20 h-full p-12 ">
+        <div class="glass-effect rounded-2xl premium-shadow p-8 max-w-2xl mx-auto mb-10 border-yellow-400 overflow-hidden">
             <div class="p-4 text-center">
                 <div class="text-6xl font-bold luxury-font luxury-text px-1 p-12">
                     ✦ Prestige Motors
                 </div>
             </div>
-            <form id="registration-form" action="phps/register.php" method="post" class="flex flex-col gap-6">
+            <form id="registration-form" action="register.php" method="post" class="flex flex-col gap-6">
                 <div class="text-left">
                     <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">First Name</label>
                     <input required type="text" id="fName" name="firstName" max="128" class="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold">
@@ -93,7 +95,7 @@
                     </button>
                 </div>
                 <div class="flex items-center">
-                    <p class="p-2">Already have an account?</p><a href="login.html" class="text-blue-500" >Login Now</a>
+                    <p class="p-2">Already have an account?</p><a href="loginpage.php" class="text-blue-500" >Login Now</a>
                 </div>
             </form>
         </div>

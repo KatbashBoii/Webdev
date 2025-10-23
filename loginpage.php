@@ -9,7 +9,9 @@
         if($decoded !== false){
             $payload = json_decode($decoded, true);
             $user = ['fname' => htmlspecialchars($payload['fname']),
-                     'lname' => htmlspecialchars($payload['lname'])];
+                     'lname' => htmlspecialchars($payload['lname']),
+                     'id' => htmlspecialchars($payload['id'])
+                    ];
         }
     }
 ?>
@@ -83,7 +85,7 @@
                     </button>
                 </div>
                 <div class="flex items-center">
-                    <p class="p-2">Don't have an account?</p><a href="registry.html" class="text-blue-500" >Sign up Now</a>
+                    <p class="p-2">Don't have an account?</p><a href="registrypage.php" class="text-blue-500" >Sign up Now</a>
                 </div>
             </form>
         </div>

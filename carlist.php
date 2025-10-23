@@ -9,7 +9,9 @@
         if($decoded !== false){
             $payload = json_decode($decoded, true);
             $user = ['fname' => htmlspecialchars($payload['fname']),
-                     'lname' => htmlspecialchars($payload['lname'])];
+                     'lname' => htmlspecialchars($payload['lname']),
+                     'id' => htmlspecialchars($payload['id'])
+                    ];
         }
     }
 ?>

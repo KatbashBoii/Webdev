@@ -9,9 +9,25 @@
         if($decoded !== false){
             $payload = json_decode($decoded, true);
             $user = ['fname' => htmlspecialchars($payload['fname']),
-                     'lname' => htmlspecialchars($payload['lname'])];
+                     'lname' => htmlspecialchars($payload['lname']),
+                     'id' => htmlspecialchars($payload['id'])
+                    ];
         }
     }
+
+    $ID = $user['id'];
+
+    $stmt = $connection->prepare("SELECT * FROM customertable WHERE ID = ? ");
+    $stmt->bind_param("i", $ID);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $customer = $result->fetch_assoc();
+
+    $stmt->close();
+    $connection->close();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -55,21 +71,21 @@
     <!--user dashboard-->
     <section class="bg-white-400 flex flex-col h-full w-full items-center mt-12 p-20 ">
          <div class="h-full glass-effect rounded-2xl premium-shadow p-8 max-w-2xl mx-auto mb-12 border-yellow-400 overflow-hidden ">
-            <div class="text-4xl font-bold luxury-font text-center luxury-text w-full mb-3"></div>
+            <div class="text-4xl font-bold luxury-font text-center luxury-text w-full mb-3">HELLO, <?php echo $customer['Fname'] ?> !</div>
 
-<div class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-4 max-w-2xl mt-12">
+    <div class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-4 max-w-2xl mt-12">
     <!-- First Name -->
-    <input id="firstNameField" type="text" value="FirstName" readonly 
+    <input id="firstNameField" type="text" value="<?php echo $customer['Fname'] ?>" readonly 
            class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400
-                  focus:outline-none focus:ring-2 focus:ring-yellow-500 
-                  bg-gray-100 w-full">
+              focus:outline-none focus:ring-2 focus:ring-yellow-500 
+              bg-gray-100 w-full placeholder:text-gray-400">
     <button id="editFirstName" 
             class="luxury-button text-white px-5 py-2 text-sm font-medium tracking-wide rounded-lg w-28">
         Edit
     </button>
 
     <!-- Last Name -->
-    <input id="lastNameField" type="text" value="LastName" readonly 
+    <input id="lastNameField" type="text" value="<?php echo $customer['Lname'] ?>" readonly 
            class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400 
                   focus:outline-none focus:ring-2 focus:ring-yellow-500 
                   bg-gray-100 w-full">
@@ -79,7 +95,7 @@
     </button>
 
     <!-- Email -->
-    <input id="emailField" type="text" value="Email" readonly 
+    <input id="emailField" type="text" value="<?php echo $customer['Email'] ?>" readonly 
            class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400 
                   focus:outline-none focus:ring-2 focus:ring-yellow-500 
                   bg-gray-100 w-full">
@@ -89,7 +105,7 @@
     </button>
 
     <!-- Phone -->
-    <input id="phoneField" type="text" value="55079880" readonly 
+    <input id="phoneField" type="text" value="<?php echo $customer['Phone'] ?>" readonly 
            class="border border-gray-300 rounded-lg px-4 py-2 text-gray-400 
                   focus:outline-none focus:ring-2 focus:ring-yellow-500 
                   bg-gray-100 w-full">
@@ -101,8 +117,8 @@
 
 
             <div class="items-center justify-center flex flex-col gap-2 mt-6">
-            <button class="luxury-button text-white p-2 text-sm font-medium tracking-wide rounded-lg w-full">View History</button>
-            <button class="luxury-button text-white p-2 text-sm font-medium tracking-wide rounded-lg w-full">Log out</button>
+            <a href="historypage.php"><button class="luxury-button text-white p-2 text-sm font-medium tracking-wide rounded-lg w-full">View History</button></a>
+            <a href="cookiereset.php"><button class="luxury-button text-white p-2 text-sm font-medium tracking-wide rounded-lg w-full">Log out</button></a>
             </div>
 
         </div>
@@ -166,4 +182,48 @@
     <script src="Javascripts/homescript.js"></script>
 
 </body>
+
+<script>
+    document.querySelectorAll("[id^='edit']").forEach(button => {
+        button.addEventListener('click', function () {
+            const fieldId = this.id.replace("edit", "").toLowerCase() + "Field";
+            const field = document.getElementById(fieldId);
+
+            const fieldMap = {
+                'firstnamefield': 'firstname',
+                'lastnamefield': 'lastname', 
+                'emailfield': 'email',
+                'phonefield': 'phone'
+            };
+
+            if (field.readOnly) {
+                // Make editable
+                field.readOnly = false;
+                field.classList.remove('text-gray-400', 'bg-gray-100');
+                field.classList.add('text-black', 'bg-white');
+                this.textContent = "Save";
+            } else {
+                // Save to database
+                const newValue = field.value;
+                const fieldName = fieldId.replace("Field", "");
+
+                fetch("updateuser.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `field=${fieldName}&value=${encodeURIComponent(newValue)}`
+                })
+                .then(res => res.text())
+                .then(data => {
+                    alert(data);
+                    field.readOnly = true;
+                    field.classList.add('text-gray-400', 'bg-gray-100');
+                    field.classList.remove('text-black', 'bg-white');
+                    this.textContent = "Edit";
+                })
+                .catch(err => console.error(err));
+            }
+        });
+    });
+</script>
+
 </html>

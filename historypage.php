@@ -3,13 +3,14 @@
     $usertoken = $_COOKIE['auth_token'];
 
     $user = NUll;
-
     if($usertoken){
         $decoded = base64_decode($usertoken, true);
         if($decoded !== false){
             $payload = json_decode($decoded, true);
             $user = ['fname' => htmlspecialchars($payload['fname']),
-                     'lname' => htmlspecialchars($payload['lname'])];
+                     'lname' => htmlspecialchars($payload['lname']),
+                     'id' => htmlspecialchars($payload['id'])
+                    ];
         }
     }
 ?>
@@ -108,7 +109,6 @@
                  <p class="text-xl text-black mt-1">
                     Pickup: <span class="text-gray-700 font-medium">Grand Baie</span> <span class=" my-1 inline-block w-1.5 h-1.5 bg-black rounded-full mx-2"></span>
                     Return: <span class="text-gray-700 font-medium">Moka</span> 
-                    
                 </p>
 
             <!--Status bar-->
