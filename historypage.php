@@ -1,3 +1,19 @@
+<?php include 'databaseconnect.php'; 
+
+    $usertoken = $_COOKIE['auth_token'];
+
+    $user = NUll;
+
+    if($usertoken){
+        $decoded = base64_decode($usertoken, true);
+        if($decoded !== false){
+            $payload = json_decode($decoded, true);
+            $user = ['fname' => htmlspecialchars($payload['fname']),
+                     'lname' => htmlspecialchars($payload['lname'])];
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +31,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <a href="../brochomepage.html">
+                    <a href="homepage.php">
                         <button class="focus:outline-none">
                             <div class="text-3xl font-bold luxury-font luxury-text">✦ Prestige Motors</div>
                         </button>
@@ -26,9 +42,9 @@
                         <a href="homepage.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">HOME</a>
                         <a href="carlist.php" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300">COLLECTION</a>
                         <?php if ($user): ?>
-                            <div><a href="user.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
+                            <div><a href="userpage.php"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">HI, <?= $user['fname'] ;?> </button></a></div>
                             <?php else: ?>
-                            <div><a href="registry.html"><button class="luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
+                            <div><a href="registrypage.php"luxury-button text-white px-6 py-2 text-sm font-medium tracking-wide">MEMBER ACCESS</button></a></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -41,7 +57,7 @@
        
 
         <div class="flex flex-row items-center mt-3 mb-5 ps-5">
-           <a href="user.html" class="w-12 h-12 flex items-center justify-center hover:scale-110 duration-300">
+           <a href="userpage.php" class="w-12 h-12 flex items-center justify-center hover:scale-110 duration-300">
     <img src="assets/icon/back-buttons-multimedia-svgrepo-com.svg" 
          alt="Back" 
          width="36" 
