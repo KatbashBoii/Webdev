@@ -13,6 +13,7 @@ $decoded = base64_decode($_COOKIE['auth_token'], true);
 if (!$decoded) {
     die("Invalid token.");
 }
+
 $payload = json_decode($decoded, true);
 $userID = htmlspecialchars($payload['id']);
 

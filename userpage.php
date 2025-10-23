@@ -75,21 +75,21 @@
 
     <div class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-4 max-w-2xl mt-12">
     <!-- First Name -->
-    <input id="firstNameField" type="text" value="<?php echo $customer['Fname'] ?>" readonly 
+    <input id="firstnameField" type="text" value="<?php echo $customer['Fname'] ?>" readonly 
            class="border border-gray-300 rounded-lg px-4 py-2 text-black
               focus:outline-none focus:ring-2 focus:ring-yellow-500 
               bg-gray-100 w-full placeholder:text-gray-400">
-    <button id="editFirstName" 
+    <button id="editfirstname" 
             class="luxury-button text-white px-5 py-2 text-sm font-medium tracking-wide rounded-lg w-28">
         Edit
     </button>
 
     <!-- Last Name -->
-    <input id="lastNameField" type="text" value="<?php echo $customer['Lname'] ?>" readonly 
+    <input id="lastnameField" type="text" value="<?php echo $customer['Lname'] ?>" readonly 
            class="border border-gray-300 rounded-lg px-4 py-2 text-black 
                   focus:outline-none focus:ring-2 focus:ring-yellow-500 
                   bg-gray-100 w-full">
-    <button id="editLastName" 
+    <button id="editlastname" 
             class="luxury-button text-white px-5 py-2 text-sm font-medium tracking-wide rounded-lg w-28">
         Edit
     </button>
@@ -152,7 +152,6 @@
                     <ul class="space-y-3 text-gray-300">
                         <li><a href="homepage.php" class="hover:text-yellow-400 transition-colors duration-300 font-light">Home</a></li>
                         <li><a href="carlist.php" class="hover:text-yellow-400 transition-colors duration-300 font-light">Collection</a></li>
-
                     </ul>
                 </div>
 
@@ -171,15 +170,12 @@
 
             <!--gold line effect-->
             <div class="section-divider mt-12 mb-8"></div>
-
-
             <div class="text-center text-gray-400 font-light">
                 <p>&copy; 2025 Prestige Motors. All rights reserved. | <a href="#" class="hover:text-yellow-400 transition-colors duration-300">Privacy Policy</a> | <a href="#" class="hover:text-yellow-400 transition-colors duration-300">Terms of Service</a></p>
             </div>
         </div>
 
     </footer>
-    <script src="Javascripts/homescript.js"></script>
 
 </body>
 
@@ -188,7 +184,6 @@
         button.addEventListener('click', function () {
             const fieldId = this.id.replace("edit", "").toLowerCase() + "Field";
             const field = document.getElementById(fieldId);
-
             const fieldMap = {
                 'firstnamefield': 'firstname',
                 'lastnamefield': 'lastname', 

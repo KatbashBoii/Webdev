@@ -110,15 +110,13 @@
 
                         <div class="text-left">
                         <label class="block text-sm font-semibold text-center text-gray-800 mb-3 tracking-wide uppercase">Departure Date</label>
-                         <?php echo'
-                            <input type="date" name="departuredate" id="departure" min=
-                            class="w-full h-[58px] border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold px-4">
-                            </div>';
-                         ?>
+                        <input type="date" name="departuredate" id="departure" min="<?= htmlspecialchars(date('Y-m-d'))?>"
+                         class="w-full h-[58px] border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold px-4">
+                        </div>
 
                         <div class="text-left">
                             <label class="block text-sm font-semibold text-center text-gray-800 mb-3 tracking-wide uppercase">Return Date</label>
-                            <input type="date" name="returndate" id="return"
+                            <input type="date" name="returndate" id="return" min="<?= htmlspecialchars(date('Y-m-d'))?>"
                             class="w-full h-[58px] border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium text-black font-bold px-4">
                         </div>
 

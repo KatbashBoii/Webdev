@@ -1,3 +1,5 @@
+<!-- Thanks Fisher -->
+
 <?php include 'databaseconnect.php'; 
 
     $query1 = "SELECT * FROM cartable WHERE ID = 8";
