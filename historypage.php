@@ -64,12 +64,12 @@
          width="36" 
          height="36" 
          class="opacity-80 hover:opacity-100 transition-all duration-300">
-</a>
+            </a>
 
-            <span class="font-bold text-white text-4xl ms-3">
-                History
-            </span>
-          
+        <span class="font-bold text-white text-4xl ms-3">
+            History
+        </span>
+    
         </div>
 
         <!-- completed -->
@@ -123,7 +123,7 @@
 </div>
 
            
-        <!-- on going -->
+
          <!-- 1st entry-->
         <div class="glass-effect premium-shadow flex flex-col md:flex-row items-center rounded-2xl mx-6 md:mx-16 mb-6 md:mb-10 p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border-yellow-400">
     

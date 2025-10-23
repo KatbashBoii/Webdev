@@ -84,6 +84,7 @@
                         Login Now
                     </button>
                 </div>
+                
                 <div class="flex items-center">
                     <p class="p-2">Don't have an account?</p><a href="registrypage.php" class="text-blue-500" >Sign up Now</a>
                 </div>
