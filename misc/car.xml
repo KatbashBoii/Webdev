@@ -33,7 +33,7 @@ xsi:noNamespaceSchemaLocation="prestigeMotors.xsd">
         </Pricing>
     </Car>
 
-    <Booking>
+    <Booking>/
         <PaymentMethods>
             <Method>E-banking</Method>
             <Method>Cash-on-arrival</Method>

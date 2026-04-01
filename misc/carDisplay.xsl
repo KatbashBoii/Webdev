@@ -23,20 +23,20 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- Navigation -->
 <nav class="nav-luxury fixed w-full top-0 z-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between items-center h-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
 
-<div class="text-3xl font-bold luxury-font luxury-text">
-✦ Prestige Motors
-</div>
+        <div class="text-3xl font-bold luxury-font luxury-text">
+            ✦ Prestige Motors
+        </div>
 
-<div class="flex space-x-8">
-<a href="homepage.php" class="text-white hover:text-yellow-400">HOME</a>
-<a href="carlist.php" class="text-white hover:text-yellow-400">COLLECTION</a>
-</div>
+        <div class="flex space-x-8">
+            <a href="homepage.php" class="text-white hover:text-yellow-400">HOME</a>
+            <a href="carlist.php" class="text-white hover:text-yellow-400">COLLECTION</a>
+        </div>
 
-</div>
-</div>
+        </div>
+    </div>
 </nav>
 
 <!-- Car Section -->
