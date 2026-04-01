@@ -257,23 +257,31 @@
                 
                 <div class="glass-effect rounded-2xl premium-shadow p-8">
                     <h3 class="luxury-font text-2xl font-semibold mb-6 text-center">Send Us a Message</h3>
-                    <form id="contact-form" class="space-y-6">
+
+                    <?php if (isset($_GET['success'])): ?>
+                        <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-4 text-center">
+                            Message sent successfully!
+                        </div>
+                    <?php endif; ?>
+
+                    <form id="contact-form" class="space-y-6" method="POST" action="recordmessage.php">
                         <div>
                             <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Full Name</label>
-                            <input type="text" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required>
+                            <input type="text" name="name" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Email Address</label>
-                            <input type="email" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required>
+                            <input type="email" name="email" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Your Message</label>
-                            <textarea rows="5" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium resize-none" placeholder="Tell us about your luxury automotive needs..." required></textarea>
+                            <textarea name="message" rows="5" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium resize-none" placeholder="Tell us about your luxury automotive needs..." required></textarea>
                         </div>
                         <button type="submit" class="w-full luxury-button text-white py-4 rounded-lg font-semibold tracking-wide uppercase">
                             Send Message
                         </button>
                     </form>
+                    <div id="form-response" class="mt-4 text-center"></div>
                 </div>
             </div>
         </div>
@@ -336,6 +344,31 @@
 
     </footer>
 
-    <script src="Javascripts/homescript.js"></script>
+    <script src="Javascripts/homescript.js">
+        document.getElementById("contact-form").addEventListener("submit", function(e) {
+            e.preventDefault(); // stop reload
+
+            let form = this;
+            let formData = new FormData(form);
+            let responseBox = document.getElementById("form-response");
+
+            fetch("recordmessage.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    responseBox.innerHTML = `<div style="color: green;">${data.message}</div>`;
+                    form.reset(); // clear form
+                } else {
+                    responseBox.innerHTML = `<div style="color: red;">${data.message}</div>`;
+                }
+            })
+            .catch(err => {
+                responseBox.innerHTML = `<div style="color: red;">Something went wrong</div>`;
+            });
+        });
+    </script>
 </body>
 </html>

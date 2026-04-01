@@ -100,4 +100,29 @@ body {
             margin: 4rem 0;
         }
 
-        
+        .comment-card {
+            transition: all 0.3s ease;
+        }
+        .comment-card:hover {
+            transform: translateY(-2px);
+        }
+        .edit-mode {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .xml-response-log {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            max-width: 400px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 9999;
+            border: 1px solid #00ff00;
+        }
