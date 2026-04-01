@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Cars xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xsi:noNamespaceSchemaLocation="cars.xsd">
+    
+    <Car>
+        <ID>1</ID>
+        <Name>Mercedes S-Class</Name>
+        <Type>Premium</Type>
+        <RentPerDay>20000.00</RentPerDay>
+        <Description>The epitome of luxury and sophistication, offering unmatched comfort and advanced technology.</Description> 
+        <LongDescription>The Mercedes S-Class defines the pinnacle of automotive luxury. Designed with meticulous attention to detail, it features a spacious handcrafted interior, cutting-edge driver assistance systems, and a silky smooth ride. Ideal for executive travel or special occasions, the S-Class delivers prestige, comfort, and performance in one refined package.</LongDescription>
+        <Image>../assets/ID1.jpg</Image>  
+    </Car>
+
+    <Car>
+        <ID>2</ID>
+        <Name>Porsche 911 Turbo</Name>
+        <Type>Sport</Type>
+        <RentPerDay>40000.00</RentPerDay>
+        <Description>Pure driving exhilaration with the rush of world-class engineering and performance.</Description> 
+        <LongDescription>A timeless sports car icon, the Porsche 911 Turbo delivers blistering acceleration, exceptional cornering ability, and unmistakable design. Built for enthusiasts, it combines everyday usability with race-inspired engineering, providing an unforgettable driving experience with luxury and power.</LongDescription>
+        <Image>../assets/ID2.jpg</Image>  
+    </Car>
+
+    <Car>
+        <ID>3</ID>
+        <Name>Range Rover Autobiography</Name>
+        <Type>All-Terrain</Type>
+        <RentPerDay>60000.00</RentPerDay>
+        <Description>Iconic luxury meets unstoppable off-road power and distinctive design.</Description> 
+        <LongDescription>The Range Rover Autobiography represents the ultimate combination of luxury SUV comfort and rugged off-road capability. Its spacious cabin features premium leather, advanced infotainment, and superior craftsmanship, while its intelligent terrain response system allows confident driving on any surface.</LongDescription>
+        <Image>../assets/ID3.jpg</Image>  
+    </Car>
+
+    <Car>
+        <ID>4</ID>
+        <Name>Mercedes G-Class</Name>
+        <Type>SUV</Type>
+        <RentPerDay>52000.00</RentPerDay>
+        <Description>Iconic luxury meets unstoppable off-road power and distinctive design.</Description> 
+        <LongDescription>The Mercedes G-Class stands as a symbol of strength and prestige. With its unmistakable boxy design, powerful engine, and luxurious interior, it offers exceptional off-road capabilities while maintaining a high-end driving experience suited for both adventure and city driving.</LongDescription>
+        <Image>../assets/ID4.jpg</Image>  
+    </Car>
+
+    <Car>
+        <ID>5</ID>
+        <Name>Audi RS6</Name>
+        <Type>Sport Sedan</Type>
+        <RentPerDay>13200.00</RentPerDay>
+        <Description>The perfect blend of family comfort and supercar-level performance.</Description> 
+        <LongDescription>The Audi RS6 Avant is a high-performance sports wagon that merges practicality with breathtaking speed. Featuring a twin-turbocharged engine, Quattro all-wheel drive, and a luxurious interior, it offers exceptional versatility while delivering the thrill of a true performance machine.</LongDescription>
+        <Image>../assets/ID5.jpg</Image>  
+    </Car>
+
+    <Car>
+        <ID>6</ID>
+        <Name>BMW M2 G87</Name>
+        <Type>Track Coupe</Type>
+        <RentPerDay>50000.00</RentPerDay>
+        <Description>Pure adrenaline on wheels with aggressive styling and race-inspired dynamics.</Description>
+        <LongDescription>The BMW M2 G87 captures the essence of pure driving pleasure. Compact yet powerful, this performance coupe features precise handling, powerful acceleration, and a driver-focused cockpit designed for enthusiasts who crave track-ready excitement.</LongDescription>
+        <Image>../assets/ID6.jpg</Image>
+    </Car>
+
+    <Car>
+        <ID>7</ID>
+        <Name>Mercedes A-Class</Name>
+        <Type>Hatchback</Type>
+        <RentPerDay>25000.00</RentPerDay>
+        <Description>Compact sophistication with modern technology and efficient performance.</Description>
+        <LongDescription>The Mercedes A-Class redefines compact luxury with its sleek design, advanced infotainment system, and refined driving dynamics. Perfect for urban driving, it combines comfort, style, and practicality in a compact premium package.</LongDescription>
+        <Image>../assets/ID7.jpg</Image>
+    </Car>
+
+    <Car>
+        <ID>8</ID>
+        <Name>BMW i7</Name>
+        <Type>Electric Luxury Sedan</Type>
+        <RentPerDay>15000.00</RentPerDay>
+        <Description>Electrifying luxury with cutting-edge electric performance and innovation.</Description>
+        <LongDescription>The BMW i7 represents the future of luxury mobility. This fully electric flagship sedan offers silent power, impressive driving range, and futuristic technology. With a spacious interior and advanced digital features, it delivers sustainable luxury without compromise.</LongDescription>
+        <Image>../assets/ID8.jpg</Image>
+    </Car>
+
+    <Car>
+        <ID>9</ID>
+        <Name>Volvo XC90 T8</Name>
+        <Type>SUV</Type>
+        <RentPerDay>17000.00</RentPerDay>
+        <Description>Scandinavian luxury meets eco-friendly hybrid performance and safety.</Description>
+        <LongDescription>The Volvo XC90 T8 plug-in hybrid combines elegant Scandinavian design with exceptional safety and hybrid efficiency. Its spacious cabin, premium materials, and advanced driver assistance technologies make it an excellent choice for families seeking comfort, safety, and sustainability.</LongDescription>
+        <Image>../assets/ID9.jpg</Image>
+    </Car>
+
+    <Car>
+        <ID>10</ID>
+        <Name>BMW M2 G87 Coupe</Name>
+        <Type>Coupe</Type>
+        <RentPerDay>25000.00</RentPerDay>
+        <Description>Responsive drivetrain built for cornering and pure driving excitement.</Description>
+        <LongDescription>The BMW M2 G87 Coupe is engineered for drivers who demand precision and performance. With its powerful turbocharged engine, balanced chassis, and aggressive styling, it provides thrilling acceleration and sharp cornering capabilities while maintaining everyday comfort.</LongDescription>
+        <Image>../assets/ID10.jpg</Image>
+    </Car>
+
+</Cars>

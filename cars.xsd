@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Cars">
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name="Car" maxOccurs="unbounded" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+
+              <xs:element name="ID" type="xs:int"/>
+              
+              <xs:element name="Name" type="xs:string"/>
+              
+              <xs:element name="Type" type="xs:string"/>
+
+              <xs:element name="RentPerDay" type="xs:decimal"/>
+
+              <xs:element name="Description" type="xs:string"/>
+
+              <xs:element name="LongDescription" type="xs:string"/>
+
+              <xs:element name="Image" type="xs:string"/>
+              
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -14,6 +14,17 @@
                     ];
         }
     }
+
+    $xml = new DOMDocument();
+    $xml->load('cars.xml');
+
+    $xsl = new DOMDocument();
+    $xsl->load('cars.xsl');
+
+    $processor = new XSLTProcessor();
+    $processor->importStylesheet($xsl);
+    $carCards = $processor->transformToXML($xml);
+
 ?>
 
 <!DOCTYPE html>
@@ -58,33 +69,8 @@
     
     <section id="cars" class="bg-white-300 p-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-24 px-2">
-    <!--INSERTING IN from DATABASE-->
-            <?php
-              $sql = "SELECT * FROM cartable";
-              $result = $connection->query($sql);
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()){
-                    echo '<div class="car-card rounded-2xl overflow-hidden border-yellow-400 flex flex-col">
-                    <div class="h-80 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex items-center justify-center relative">
-                     <img src="assets/ID'. htmlspecialchars($row["ID"]).'.jpg" class="absolute inset-0 w-full h-full object-cover z-0" />
-                        <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">'. htmlspecialchars($row["Type"]) .'</div>
-                    </div>
-                    <div class="p-8 flex flex-col flex-1">
-                        <h3 class="luxury-font text-2xl font-semibold mb-3">'. htmlspecialchars($row["Name"]) .'</h3>
-                        <p>'. htmlspecialchars($row["Description"]) .'</p>
-                        <div class="flex justify-between items-center mb-6 mt-auto">
-                            <div class="text-3xl font-bold text-amber-400 ">RS '. htmlspecialchars($row["RentPerDay"]) .'<span class="text-lg text-gray-500 font-normal">/day</span></div>
-                        </div>
-                        <a href="car.php?' . http_build_query(['id' => $row['ID']]) . '">
-                        <button class="w-full luxury-button text-white py-3 rounded-lg font-semibold tracking-wide uppercase">
-                            Reserve Now
-                        </button>
-                        </a>
-                    </div>
-                </div>';
-                }
-              }
-            ?>   
+            <?= $carCards ?>
+        </div>
     </section>
 
    <!-- Footer -->
