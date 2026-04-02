@@ -16,6 +16,8 @@ if ($usertoken) {
 // Check form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    header('Content-Type: application/json');
+
     // Get form values
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
@@ -23,11 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Basic validation
     if (empty($name) || empty($email) || empty($message)) {
-        die("All fields are required.");
+        echo json_encode(["status" => "error", "message" => "All fields are required."]);
+        exit;
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Invalid email format.");
+        echo json_encode(["status" => "error", "message" => "Invalid email format."]);
+        exit;
     }
 
     // Prepare SQL

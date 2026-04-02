@@ -26,6 +26,9 @@
                      'lname' => htmlspecialchars($payload['lname']),
                      'id' => htmlspecialchars($payload['id'])
                     ];
+
+                    $prefillName = trim($user['fname'] . ' ' . $user['lname']);
+                    $prefillEmail = htmlspecialchars($payload['email']);
         }
     }
 ?>
@@ -267,11 +270,13 @@
                     <form id="contact-form" class="space-y-6" method="POST" action="recordmessage.php">
                         <div>
                             <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Full Name</label>
-                            <input type="text" name="name" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required>
+                            <input type="text" name="name" value="<?php echo $prefillName; ?>" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required
+                            <?php echo $prefillName ? 'readonly' : 'required'; ?>>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Email Address</label>
-                            <input type="email" name="email" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required>
+                            <input type="email" name="email" value="<?php echo $prefillEmail; ?>" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 bg-white/90 font-medium" required
+                            <?php echo $prefillEmail ? 'readonly' : 'required'; ?>>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-800 mb-3 tracking-wide uppercase">Your Message</label>
@@ -344,31 +349,36 @@
 
     </footer>
 
-    <script src="Javascripts/homescript.js">
-        document.getElementById("contact-form").addEventListener("submit", function(e) {
-            e.preventDefault(); // stop reload
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("contact-form");
+            if (form) {
+                form.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    let formData = new FormData(form);
+                    let responseBox = document.getElementById("form-response");
 
-            let form = this;
-            let formData = new FormData(form);
-            let responseBox = document.getElementById("form-response");
-
-            fetch("recordmessage.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    responseBox.innerHTML = `<div style="color: green;">${data.message}</div>`;
-                    form.reset(); // clear form
-                } else {
-                    responseBox.innerHTML = `<div style="color: red;">${data.message}</div>`;
-                }
-            })
-            .catch(err => {
-                responseBox.innerHTML = `<div style="color: red;">Something went wrong</div>`;
-            });
+                    fetch("recordmessage.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            responseBox.innerHTML = `<div class="text-green-600">${data.message}</div>`;
+                            form.reset();
+                        } else {
+                            responseBox.innerHTML = `<div class="text-red-600">${data.message}</div>`;
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Fetch error:", err);
+                        responseBox.innerHTML = `<div class="text-red-600">Something went wrong</div>`;
+                    });
+                });
+            }
         });
     </script>
+
 </body>
 </html>
