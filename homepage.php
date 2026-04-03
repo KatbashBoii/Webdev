@@ -260,7 +260,8 @@
                 
                 <div class="glass-effect rounded-2xl premium-shadow p-8">
                     <h3 class="luxury-font text-2xl font-semibold mb-6 text-center">Send Us a Message</h3>
-
+                    
+                            <!-- PHP response -->
                     <?php if (isset($_GET['success'])): ?>
                         <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-4 text-center">
                             Message sent successfully!
@@ -350,34 +351,63 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const form = document.getElementById("contact-form");
-            if (form) {
-                form.addEventListener("submit", function(e) {
-                    e.preventDefault();
-                    let formData = new FormData(form);
-                    let responseBox = document.getElementById("form-response");
 
-                    fetch("recordmessage.php", {
-                        method: "POST",
-                        body: formData
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.status === "success") {
-                            responseBox.innerHTML = `<div class="text-green-600">${data.message}</div>`;
-                            form.reset();
-                        } else {
-                            responseBox.innerHTML = `<div class="text-red-600">${data.message}</div>`;
-                        }
-                    })
-                    .catch(err => {
-                        console.error("Fetch error:", err);
-                        responseBox.innerHTML = `<div class="text-red-600">Something went wrong</div>`;
-                    });
-                });
+        // Handle contact form submission
+        fetch('recordmessage.php', {
+            method: 'POST',
+            body: formData
+        })
+
+        .then(text => {
+            
+            // DEBUG: raw xml
+            console.log("Raw XML response:", text);
+
+            //parse xml string into a DOM object
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(text, "application/xml");
+            
+            // Check for XML parsing errors
+            const parseError = xmlDoc.querySelector('parsererror');
+            if (parseError) {
+                throw new Error('Invalid XML response');
             }
+
+            
+            // DEBUG: See the parsed XML structure
+            console.log("Parsed XML:", xmlDoc);
+            console.log("Root element:", xmlDoc.documentElement.nodeName);
+
+
+            //geting the values
+            const status = xmlDoc.querySelector('status').textContent;
+            const message = xmlDoc.querySelector('message').textContent;
+            
+            const responseBox = document.getElementById('form-response');
+
+            if (status === 'success') {
+                //simple colour for success
+                responseBox.innerHTML = '<div class="text-green-600">${message}</div>';
+                const messageField = form.querySelector('textarea[name="message"]');
+                if (messageField) {
+                    messageField.value = '';
+                }
+
+            } else {
+                //different colours for errors
+                const isDuplicate = message?.toLowerCase().includes('already');
+                const bgColor = isDuplicate ? 'bg-yellow-50 border-yellow-200' : 'bg-red-50 border-red-200';
+                const textColor = isDuplicate ? 'text-yellow-700' : 'text-red-600';
+                responseBox.innerHTML = `<div class="${bgColor} ${textColor} border p-4 rounded-lg">${message}</div>`;
+            }
+        })
+
+        .catch(err => {
+            console.error('Error submitting form:', err);
+            document.getElementById('form-response').innerHTML = 
+            '<div class="bg-red-50 text-red-600 border-red-200 border p-4 rounded-lg">An unexpected error occurred. Please try again later.</div>';
         });
+        
     </script>
 
 </body>
